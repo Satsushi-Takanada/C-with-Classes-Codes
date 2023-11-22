@@ -1,0 +1,179 @@
+#include "VirtualPet.h"
+#include <iostream>
+#include <string>
+#include <windows.h>
+
+using namespace std;
+
+struct user {
+	int feed, msleep, bathe, play;
+	int food, sleep, smell, happy;
+	string name, action;
+};
+
+int feedsp(int fed) {
+	srand(time(NULL));
+	fed += 1 + rand() % 10;
+
+	return fed;
+}
+
+int sleepsp(int sleeps) {
+	srand(time(NULL));
+	sleeps += 1 + rand() % 10;
+
+	return sleeps;
+}
+
+int bathesp(int bathes) {
+	srand(time(NULL));
+	bathes += 1 + rand() % 10;
+
+	return bathes;
+}
+
+int playssp(int plays) {
+	srand(time(NULL));
+	plays += 1 + rand() % 10;
+
+	return plays;
+}
+
+int feedsm(int fed) {
+	srand(time(NULL));
+	fed -= 1 + rand() % 10;
+
+	return fed;
+}
+
+int sleepsm(int sleeps) {
+	srand(time(NULL));
+	sleeps -= 1 + rand() % 10;
+
+	return sleeps;
+}
+
+int bathesm(int bathes) {
+	srand(time(NULL));
+	bathes -= 1 + rand() % 10;
+
+	return bathes;
+}
+
+int playssm(int plays) {
+	srand(time(NULL));
+	plays -= 1 + rand() % 10;
+
+	return plays;
+}
+
+int main() {
+	srand(time(NULL));
+	user pet;
+
+	pet.food = 25;
+	pet.sleep = 25;
+	pet.smell = 25;
+	pet.happy = 25;
+
+	for (int i = 1; i <= 76; i++) {
+		cout << "#";
+		if (i == 76) {
+			cout << "\n";
+			for (int j = 0; j <= 25; j++) {
+				cout << " ";
+			}
+			cout << "Welcome to Pet Simulator!";
+		}
+	}
+
+	for (int j = 0; j <= 25; j++) {
+		cout << " ";
+		if (j == 25) {
+			cout << "\n";
+			for (int i = 1; i <= 76; i++) {
+				cout << "#";
+			}
+		}
+	}
+
+	cout << "\nStart?(Y/N)\n";
+	getline(cin, pet.action);
+
+	if (pet.action == "Y" || pet.action == "y") {
+		goto VirtualPet;
+	}
+	else {
+		exit(0);
+	}
+
+VirtualPet: cout << "\nEnter name for pet:\n";
+	getline(cin, pet.name);
+
+	GAME: system("CLS");
+	cout << "*Use EXIT to leave the game.*\n";
+	cout << "*Use FEED for hunger, SLEEP for energy, BATHE for smell, and PLAY for happiness.*\n\n";
+	cout << "Pet: " << pet.name;
+
+	cout << "\n\nHunger: " << pet.food << "\nEnergy: " << pet.sleep;
+	cout << "\nSmell: " << pet.smell << "\nHappiness: " << pet.happy;
+
+	QUESTION: cout << "\n\nAction?\n";
+	cin >> pet.action;
+
+	if (pet.action == "FEED") {
+		feedsp(pet.food);
+		sleepsm(pet.sleep);
+		bathesm(pet.smell);
+		playssm(pet.happy);
+		pet.food = feedsp(pet.food);
+		pet.sleep = sleepsm(pet.sleep);
+		pet.smell = bathesm(pet.smell);
+		pet.happy = playssm(pet.happy);
+		goto GAME;
+	}
+
+	else if (pet.action == "SLEEP") {
+		feedsm(pet.food);
+		sleepsp(pet.sleep);
+		bathesm(pet.smell);
+		playssm(pet.happy);
+		pet.food = feedsp(pet.food);
+		pet.sleep = sleepsm(pet.sleep);
+		pet.smell = bathesm(pet.smell);
+		pet.happy = playssm(pet.happy);
+		goto GAME;
+	}
+
+	else if (pet.action == "BATHE") {
+		feedsm(pet.food);
+		sleepsm(pet.sleep);
+		bathesp(pet.smell);
+		playssm(pet.happy);
+		pet.food = feedsp(pet.food);
+		pet.sleep = sleepsm(pet.sleep);
+		pet.smell = bathesm(pet.smell);
+		pet.happy = playssm(pet.happy);
+		goto GAME;
+	}
+
+	else if (pet.action == "PLAY") {
+		feedsm(pet.food);
+		sleepsm(pet.sleep);
+		bathesm(pet.smell);
+		playssp(pet.happy);
+		pet.food = feedsp(pet.food);
+		pet.sleep = sleepsm(pet.sleep);
+		pet.smell = bathesm(pet.smell);
+		pet.happy = playssm(pet.happy);
+		goto GAME;
+	}
+
+	else if (pet.action == "EXIT") {
+		exit(0);
+	}
+
+	else {
+		goto QUESTION;
+	}
+}

@@ -1,0 +1,508 @@
+#include <iostream>
+#include <string>
+#include <cmath>
+#include <Windows.h>
+#include <algorithm>
+
+using namespace std;
+
+struct fight {
+	string character;
+	string player;
+	string choice;
+	string move;
+	int dmg;
+	int health;
+	int healthdmg;
+	int round;
+	int score;
+	int hitbox;
+};
+
+/*Player vs Player Fight Start*/
+void fightplayer(string p1n, string p1nc, string p2n, string p2nc) {
+	srand(time(NULL));
+	fight game;
+	fight player1;
+	fight player2;
+
+	game.round = 1;
+	player1.health = 100;
+	int p1score = 0;
+	player1.dmg = 50;
+	player2.health = 100;
+	int p2score = 0;
+	player2.dmg = 50;
+
+	do {
+		Sleep(2000);
+		system("CLS");
+		cout << "P VS P\n\n" << "Player1: " << p1n << " Character: " << p1nc;
+		cout << "\nPlayer2: " << p2n << " Character: " << p2nc;
+
+		cout << "\n\n*Use PUNCH and KICK for the moves\n\n";
+
+		cout << "Score of " << p1n << " " << p1score;
+		cout << "\nScore of " << p2n << " " << p2score << "\n\n";
+
+		cout << "Round " << game.round << " Fighters Fight!\n\n";
+
+		do {
+			player1.healthdmg;
+			player2.healthdmg;
+			
+			/*Player1 Move Start*/
+			cout << p1n << "'s Turn: \n";
+			getline(cin, player1.move);
+
+			transform(player1.move.begin(), player1.move.end(), player1.move.begin(), toupper);
+
+			if (player1.move == "KICK" || player1.move == "PUNCH") {
+				game.hitbox = 1 + rand() % 10;
+				if (game.hitbox <= 5) {
+					cout << "Nice Hit! " << p1n << "\n";
+					player2.healthdmg = player2.health - player1.dmg;
+					player2.health = player2.healthdmg;
+						if (player2.health <= 0) {
+							cout << p2nc << "'s Health is 0\n\n";
+						}
+						else {
+							cout << p2nc << "'s Health is " << player2.health <<"\n\n";
+						}
+				}
+				else {
+					cout << "Nice Dodge! " << p2n << "\n\n";
+				}
+			}
+			if (player2.health <= 0) {
+				cout << "Round Winner! " << p1n << "!\n\n";
+				game.round++;
+				p1score++;
+				player1.health = 100;
+				player2.health = 100;
+				break;
+			}
+			/*Player1 Move End*/
+
+			/*Player2 Move Start*/
+			cout << p2n << "'s Turn: \n";
+			getline(cin, player2.move);
+
+			transform(player2.move.begin(), player2.move.end(), player2.move.begin(), toupper);
+
+			if (player2.move == "KICK" || player2.move == "PUNCH") {
+				game.hitbox = 1 + rand() % 10;
+				if (game.hitbox <= 5) {
+					cout << "Nice Hit! " << p2n << "\n";
+					player1.healthdmg = player1.health - player2.dmg;
+					player1.health = player1.healthdmg;
+					if (player1.health <= 0) {
+						cout << p1nc << "'s Health is 0\n\n";
+					}
+					else {
+						cout << p1nc << "'s Health is " << player1.health << "\n\n";
+					}
+				}
+				else {
+					cout << "Nice Dodge! " << p1n << "\n\n";
+				}
+			}
+			if (player1.health <= 0) {
+				cout << "Round Winner! " << p2n << "!\n\n";
+				game.round++;
+				p2score++;
+				player1.health = 100;
+				player2.health = 100;
+				break;
+			}
+			/*Player2 Move End*/
+
+		} while (player1.health != 0 && player2.health != 0);
+	} while ((p1score != 3)  && (p2score != 3));
+
+	Sleep(1500);
+
+	system("CLS");
+
+	if (p1score == 3) {
+		cout << "Score of " << p1n << " " << p1score;
+		cout << "\nScore of " << p2n << " " << p2score;
+		cout << "\n\nThe Winner is " << p1n << "!\n\n";
+	}
+
+	if (p2score == 3) {
+		cout << "Score of " << p1n << " " << p1score;
+		cout << "\nScore of " << p2n << " " << p2score;
+		cout << "\n\nThe Winner is " << p2n << "!\n\n";
+	}
+
+	QSTN: cout << "Continue? (Yes/No)\n";
+	getline(cin, game.choice);
+
+	transform(game.choice.begin(), game.choice.end(), game.choice.begin(), toupper);
+
+	if (game.choice == "YES") {
+		system("CLS");
+	}
+
+	else if (game.choice == "NO") {
+		system("CLS");
+		cout << "Exiting...";
+		exit(0);
+	}
+
+	else {
+		goto QSTN;
+	}
+}
+/*Player vs Player Fight End*/
+
+/*Player vs AI Fight Start*/
+void fightai(int diff, string player, string ai, string playerc) {
+	fight playerg;
+	fight AI;
+	fight game;
+
+	game.round = 1;
+	playerg.health = 100;
+	playerg.dmg = 50;
+	AI.health = 100;
+	AI.dmg = 50;
+	int pscore = 0;
+	int aiscore = 0;
+
+	do {
+		Sleep(2000);
+		system("CLS");
+
+		cout << "P VS C\n\n" << "Player1: " << player << " Character: " << playerc << "\nAI: " << ai;
+
+		cout << "\n\n*Use PUNCH and KICK for the moves\n\n";
+
+		cout << "Score of " << player << " " << pscore;
+		cout << "\nScore of AI " << aiscore << "\n\n";
+
+		cout << "Round " << game.round << " Fighters Fight!\n\n";
+
+		do {
+			playerg.healthdmg;
+			AI.healthdmg;
+
+			/*Player1 Move Start*/
+			cout << player << "'s Turn: \n";
+			getline(cin, playerg.move);
+
+			transform(playerg.move.begin(), playerg.move.end(), playerg.move.begin(), toupper);
+
+			if (playerg.move == "KICK" || playerg.move == "PUNCH") {
+				game.hitbox = 1 + rand() % 10;
+				if (game.hitbox <= 5) {
+					cout << "Nice Hit! " << player << "\n";
+					AI.healthdmg = AI.health - playerg.dmg;
+					AI.health = AI.healthdmg;
+					if (AI.health <= 0) {
+						cout << "AI's Health is 0\n\n";
+					}
+					else {
+						cout << "AI's Health is " << AI.health << "\n\n";
+					}
+				}
+				else {
+					cout << "Nice Dodge! AI" << "\n\n";
+				}
+			}
+			if (AI.health <= 0) {
+				cout << "Round Winner! " << player << "!\n\n";
+				game.round++;
+				pscore++;
+				playerg.health = 100;
+				AI.health = 100;
+				break;
+			}
+			/*Player1 Move End*/
+
+			/*AI Move Start*/
+			cout << "AI's Turn: \n";
+			AI.move = "KICK";
+
+			if (AI.move == "KICK" || AI.move == "PUNCH") {
+				game.hitbox = 1 + rand() % 10;
+				if (game.hitbox <= diff) {
+					cout << "Nice Hit! AI" << "\n";
+					playerg.healthdmg = playerg.health - AI.dmg;
+					playerg.health = playerg.healthdmg;
+					if (playerg.health <= 0) {
+						cout << player << "'s Health is 0\n\n";
+					}
+					else {
+						cout << player << "'s Health is " << playerg.health << "\n\n";
+					}
+				}
+				else {
+					cout << "Nice Dodge! " << player << "\n\n";
+				}
+			}
+			if (playerg.health <= 0) {
+				cout << "Round Winner! AI" << "!\n\n";
+				game.round++;
+				aiscore++;
+				playerg.health = 100;
+				AI.health = 100;
+				break;
+			}
+			/*AI Move End*/
+
+		} while (playerg.health != 0 && AI.health != 0);
+	} while ((pscore != 3) && (aiscore != 3));
+
+	Sleep(1500);
+
+	system("CLS");
+
+	if (pscore == 3) {
+		cout << "Score of " << player << " " << pscore;
+		cout << "\nScore of AI" << " " << aiscore;
+		cout << "\n\nThe Winner is " << player << "!\n\n";
+	}
+
+	if (aiscore == 3) {
+		cout << "Score of " << player << " " << pscore;
+		cout << "\nScore of AI" << " " << aiscore;
+		cout << "\n\nThe Winner is AI" << "!\n\n";
+	}
+
+QSTN: cout << "Continue? (Yes/No)\n";
+	getline(cin, game.choice);
+
+	transform(game.choice.begin(), game.choice.end(), game.choice.begin(), toupper);
+
+	if (game.choice == "YES") {
+		system("CLS");
+	}
+
+	else if (game.choice == "NO") {
+		system("CLS");
+		cout << "Exiting...";
+		exit(0);
+	}
+
+	else {
+		goto QSTN;
+	}
+}
+/*Player vs AI Fight End*/
+
+/*Main Code*/
+int main() {
+	srand(time(NULL));
+	fight user;
+	fight player1;
+	fight player2;
+	fight playerg;
+	fight fighter;
+	fight AI;
+
+	string fighters[6] = { "JIN", "KAZUYA", "LARS", "DEVIL JIN", "CLAUDIO", "KING" };
+
+	for (int i = 0; i <= 75; i++) {
+		cout << "#";
+		if (i == 75) {
+			cout << "\n";
+			for (int j = 0; j <= 25; j++) {
+					cout << " ";
+			}
+			cout << "Welcome to Text Fighter!";
+		}
+	}
+
+	for (int j = 0; j <= 25; j++) {
+			cout << " ";
+			if (j == 25) {
+				cout << "\n";
+				for (int i = 0; i <= 75; i++) {
+					cout << "#";
+				}
+			}
+	}	
+
+/*Game Start And Menu Start*/
+ASK: cout << "\nStart (Yes/No)\n";
+	getline(cin, user.choice);
+
+	transform(user.choice.begin(), user.choice.end(), user.choice.begin(), toupper);
+
+	if (user.choice == "YES") {
+		system("CLS");
+		goto GAME;
+	}
+
+	else if (user.choice == "NO") {
+		cout << "Exiting...";
+		Sleep(1000);
+		system("CLS");
+		exit(0);
+	}
+	
+	else {
+		goto ASK;
+	}
+
+GAME:
+	cout << "*Use P for player and C for computer*\n";
+	cout << "*Type EXIT to leave the game*\n\n";
+
+	cout << "TEXT FIGHTER\n\n";
+
+	cout << "Player VS Player\n" << "Player VS Computer\n\n";
+	
+ASKM: cout << "Choose your opponent!\n";
+
+	getline(cin, user.choice);
+
+	transform(user.choice.begin(), user.choice.end(), user.choice.begin(), toupper);
+
+	if (user.choice == "P") {
+		goto PVSP;
+	}
+
+	else if (user.choice == "C") {
+		goto PVSC;
+	}
+
+	else if (user.choice == "EXIT") {
+		system("CLS");
+		cout << "Exiting...";
+		exit(0);
+	}
+
+	else {
+		goto ASKM;
+	}
+	/*Game End And Menu End*/
+	
+	/*Player vs Player Code Begin*/
+PVSP:
+	system("CLS");
+	cout << "P VS P\n\n" << "Enter your name Player 1\n";
+	getline(cin, player1.player);
+
+	transform(player1.player.begin(), player1.player.end(), player1.player.begin(), toupper);
+
+	cout << "\nEnter your name Player 2\n";
+	getline(cin, player2.player);
+
+	transform(player2.player.begin(), player2.player.end(), player2.player.begin(), toupper);
+
+	system("CLS");
+	cout << "P VS P\n\n" << "Player1: " << player1.player << "\nPlayer2: " << player2.player;
+
+	cout << "\n\nFighters: \n\n" << "Jin\n" << "Kazuya\n" << "Lars\n" << "Devil Jin\n" << "Claudio\n" << "King\n\n";
+
+ASKC1: cout <<  "Choose a character Player 1: \n";
+	getline(cin, player1.character);
+
+	transform(player1.character.begin(), player1.character.end(), player1.character.begin(), toupper);
+
+	if (find(begin(fighters), end(fighters), player1.character) != end(fighters)) {
+		cout << "The Player has chosen: " << player1.character;
+	}
+	else {
+		goto ASKC1;
+	}
+
+ASKC2: cout << "\n\nChoose a character Player 2: \n";
+	getline(cin, player2.character);
+
+	transform(player2.character.begin(), player2.character.end(), player2.character.begin(), toupper);
+
+	if (find(begin(fighters), end(fighters), player2.character) != end(fighters)) {
+		cout << "The Player has chosen: " << player2.character;
+	}
+	else {
+		goto ASKC2;
+	}
+
+	system("CLS");
+
+	cout << "Loading...";
+
+	fightplayer(player1.player, player1.character, player2.player, player2.character);
+
+	cout << "Loading...";
+	Sleep(500);
+
+	system("CLS");
+
+	goto GAME;
+	/*Player vs Player Code End*/
+
+	/*Player vs Computer Code Begin*/
+PVSC: 
+	system("CLS");
+	cout << "P VS C\n\n" << "Enter your name Player:\n";
+	getline(cin, playerg.player);
+
+	transform(playerg.player.begin(), playerg.player.end(), playerg.player.begin(), toupper);
+
+	system("CLS");
+
+	cout << "P VS C\n\n" << "Player1: " << playerg.player;
+
+	cout << "\n\nFighters: \n\n" << "Jin\n" << "Kazuya\n" << "Lars\n" << "Devil Jin\n" << "Claudio\n" << "King\n\n";
+
+ASKA1: cout << "Choose a character Player 1: \n";
+	getline(cin, playerg.character);
+
+	transform(playerg.character.begin(), playerg.character.end(), playerg.character.begin(), toupper);
+
+	if (find(begin(fighters), end(fighters), playerg.character) != end(fighters)) {
+		cout << "The Player has chosen: " << playerg.character;
+	}
+	else {
+		goto ASKA1;
+	}
+
+	int aichoice = rand() % 5;
+	AI.character = fighters[aichoice];
+
+	cout << "\n\nThe AI has chosen: " << AI.character;
+
+	cout << "\n\nAI Difficulty:\n\n" << "Easy\n" << "Normal\n" << "Hard\n\n";
+ASKA2: cout << "Choose Difficulty: \n";
+	getline(cin, user.choice);
+
+	transform(user.choice.begin(), user.choice.end(), user.choice.begin(), toupper);
+
+	if (user.choice == "EASY") {
+		AI.hitbox = 6;
+		system("CLS");
+		cout << "Loading...";
+		fightai(AI.hitbox, playerg.player, AI.character, playerg.character);
+	}
+
+	else if (user.choice == "NORMAL") {
+		AI.hitbox = 7;
+		system("CLS");
+		cout << "Loading...";
+		fightai(AI.hitbox, playerg.player, AI.character, playerg.character);
+	}
+
+	else if (user.choice == "HARD") {
+		AI.hitbox = 8;
+		system("CLS");
+		cout << "Loading...";
+		fightai(AI.hitbox, playerg.player, AI.character, playerg.character);
+	}
+
+	else {
+		goto ASKA2;
+	}
+
+	cout << "Loading...";
+	Sleep(500);
+
+	system("CLS");
+
+	goto GAME;
+	/*Player vs Computer Code End*/
+}

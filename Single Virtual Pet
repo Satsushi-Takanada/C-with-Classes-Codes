@@ -1,4 +1,3 @@
-#include "VirtualPet.h"
 #include <iostream>
 #include <string>
 #include <windows.h>
@@ -11,70 +10,78 @@ struct user {
 	string name, action;
 };
 
-int feedsp(int fed) {
-	srand(time(NULL));
-	fed += 1 + rand() % 10;
+int feedsp(int fed, int rando) {
+	fed = fed + rando;
+
+	if (fed >= 50) {
+		fed = 50;
+	}
 
 	return fed;
 }
 
-int sleepsp(int sleeps) {
-	srand(time(NULL));
-	sleeps += 1 + rand() % 10;
+int sleepsp(int sleeps, int rando) {
+	sleeps = sleeps + rando;
+
+	if (sleeps >= 50) {
+		sleeps = 50;
+	}
 
 	return sleeps;
 }
 
-int bathesp(int bathes) {
-	srand(time(NULL));
-	bathes += 1 + rand() % 10;
+int bathesp(int bathes, int rando) {
+	bathes = bathes + rando;
+
+	if (bathes >= 50) {
+		bathes = 50;
+	}
 
 	return bathes;
 }
 
-int playssp(int plays) {
-	srand(time(NULL));
-	plays += 1 + rand() % 10;
+int playssp(int plays, int rando) {;
+	plays = plays + rando;
+
+	if (plays >= 50) {
+		plays = 50;
+	}
 
 	return plays;
 }
 
-int feedsm(int fed) {
-	srand(time(NULL));
-	fed -= 1 + rand() % 10;
+int feedsm(int fed, int rando) {
+	fed = fed - rando;
 
 	return fed;
 }
 
-int sleepsm(int sleeps) {
-	srand(time(NULL));
-	sleeps -= 1 + rand() % 10;
+int sleepsm(int sleeps, int rando) {
+	sleeps = sleeps - rando;
 
 	return sleeps;
 }
 
-int bathesm(int bathes) {
-	srand(time(NULL));
-	bathes -= 1 + rand() % 10;
+int bathesm(int bathes, int rando) {
+	bathes = bathes - rando;
 
 	return bathes;
 }
 
-int playssm(int plays) {
-	srand(time(NULL));
-	plays -= 1 + rand() % 10;
+int playssm(int plays, int rando) {
+	plays = plays - rando;
 
 	return plays;
 }
 
 int main() {
-	srand(time(NULL));
+	srand(time(0));
 	user pet;
 
-	pet.food = 25;
-	pet.sleep = 25;
-	pet.smell = 25;
-	pet.happy = 25;
+	pet.food = 40;
+	pet.sleep = 40;
+	pet.smell = 40;
+	pet.happy = 40;
 
 	for (int i = 1; i <= 76; i++) {
 		cout << "#";
@@ -110,7 +117,19 @@ int main() {
 VirtualPet: cout << "\nEnter name for pet:\n";
 	getline(cin, pet.name);
 
-	GAME: system("CLS");
+GAME: system("CLS");
+
+	int rando1 = 1 + rand() % 10;
+	int rando2 = 1 + rand() % 10;
+	int rando3 = 1 + rand() % 10;
+	int rando4 = 1 + rand() % 10;
+
+	if (pet.food <= 0 || pet.sleep <= 0 || pet.smell <= 0 || pet.happy <= 0) {
+		system("CLS");
+		cout << "GAMEOVER!";
+		exit(0);
+	}
+
 	cout << "*Use EXIT to leave the game.*\n";
 	cout << "*Use FEED for hunger, SLEEP for energy, BATHE for smell, and PLAY for happiness.*\n\n";
 	cout << "Pet: " << pet.name;
@@ -122,53 +141,52 @@ VirtualPet: cout << "\nEnter name for pet:\n";
 	cin >> pet.action;
 
 	if (pet.action == "FEED") {
-		feedsp(pet.food);
-		sleepsm(pet.sleep);
-		bathesm(pet.smell);
-		playssm(pet.happy);
-		pet.food = feedsp(pet.food);
-		pet.sleep = sleepsm(pet.sleep);
-		pet.smell = bathesm(pet.smell);
-		pet.happy = playssm(pet.happy);
+		feedsp(pet.food, rando1);
+		sleepsm(pet.sleep, rando2);
+		bathesm(pet.smell, rando3);
+		playssm(pet.happy, rando4);
+		pet.food = feedsp(pet.food, rando1);
+		pet.sleep = sleepsm(pet.sleep, rando2);
+		pet.smell = bathesm(pet.smell, rando3);
+		pet.happy = playssm(pet.happy, rando4);
 		goto GAME;
 	}
 
 	else if (pet.action == "SLEEP") {
-		feedsm(pet.food);
-		sleepsp(pet.sleep);
-		bathesm(pet.smell);
-		playssm(pet.happy);
-		pet.food = feedsp(pet.food);
-		pet.sleep = sleepsm(pet.sleep);
-		pet.smell = bathesm(pet.smell);
-		pet.happy = playssm(pet.happy);
+		feedsm(pet.food, rando1);
+		sleepsp(pet.sleep, rando2);
+		bathesm(pet.smell, rando3);
+		playssm(pet.happy, rando4);
+		pet.food = feedsm(pet.food, rando1);
+		pet.sleep = sleepsp(pet.sleep, rando2);
+		pet.smell = bathesm(pet.smell, rando3);
+		pet.happy = playssm(pet.happy, rando4);
 		goto GAME;
 	}
 
 	else if (pet.action == "BATHE") {
-		feedsm(pet.food);
-		sleepsm(pet.sleep);
-		bathesp(pet.smell);
-		playssm(pet.happy);
-		pet.food = feedsp(pet.food);
-		pet.sleep = sleepsm(pet.sleep);
-		pet.smell = bathesm(pet.smell);
-		pet.happy = playssm(pet.happy);
+		feedsm(pet.food, rando1);
+		sleepsm(pet.sleep, rando2);
+		bathesp(pet.smell, rando3);
+		playssm(pet.happy, rando4);
+		pet.food = feedsm(pet.food, rando1);
+		pet.sleep = sleepsm(pet.sleep, rando2);
+		pet.smell = bathesp(pet.smell, rando3);
+		pet.happy = playssm(pet.happy, rando4);
 		goto GAME;
 	}
 
 	else if (pet.action == "PLAY") {
-		feedsm(pet.food);
-		sleepsm(pet.sleep);
-		bathesm(pet.smell);
-		playssp(pet.happy);
-		pet.food = feedsp(pet.food);
-		pet.sleep = sleepsm(pet.sleep);
-		pet.smell = bathesm(pet.smell);
-		pet.happy = playssm(pet.happy);
+		feedsm(pet.food, rando1);
+		sleepsm(pet.sleep, rando2);
+		bathesm(pet.smell, rando3);
+		playssp(pet.happy, rando4);
+		pet.food = feedsm(pet.food, rando1);
+		pet.sleep = sleepsm(pet.sleep, rando2);
+		pet.smell = bathesm(pet.smell, rando3);
+		pet.happy = playssp(pet.happy, rando4);
 		goto GAME;
 	}
-
 	else if (pet.action == "EXIT") {
 		exit(0);
 	}

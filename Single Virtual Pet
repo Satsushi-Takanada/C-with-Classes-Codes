@@ -149,10 +149,6 @@ QUESTION: cout << "\n\nAction?\n";
 	transform(pet.action.begin(), pet.action.end(), pet.action.begin(), toupper);
 
 	if (pet.action == "FEED") {
-		feedsp(pet.food, rando1);
-		sleepsm(pet.sleep, rando2);
-		bathesm(pet.smell, rando3);
-		playssm(pet.happy, rando4);
 		pet.food = feedsp(pet.food, rando1);
 		pet.sleep = sleepsm(pet.sleep, rando2);
 		pet.smell = bathesm(pet.smell, rando3);
@@ -161,10 +157,6 @@ QUESTION: cout << "\n\nAction?\n";
 	}
 
 	else if (pet.action == "SLEEP") {
-		feedsm(pet.food, rando1);
-		sleepsp(pet.sleep, rando2);
-		bathesm(pet.smell, rando3);
-		playssm(pet.happy, rando4);
 		pet.food = feedsm(pet.food, rando1);
 		pet.sleep = sleepsp(pet.sleep, rando2);
 		pet.smell = bathesm(pet.smell, rando3);
@@ -173,10 +165,6 @@ QUESTION: cout << "\n\nAction?\n";
 	}
 
 	else if (pet.action == "BATHE") {
-		feedsm(pet.food, rando1);
-		sleepsm(pet.sleep, rando2);
-		bathesp(pet.smell, rando3);
-		playssm(pet.happy, rando4);
 		pet.food = feedsm(pet.food, rando1);
 		pet.sleep = sleepsm(pet.sleep, rando2);
 		pet.smell = bathesp(pet.smell, rando3);
@@ -185,10 +173,6 @@ QUESTION: cout << "\n\nAction?\n";
 	}
 
 	else if (pet.action == "PLAY") {
-		feedsm(pet.food, rando1);
-		sleepsm(pet.sleep, rando2);
-		bathesm(pet.smell, rando3);
-		playssp(pet.happy, rando4);
 		pet.food = feedsm(pet.food, rando1);
 		pet.sleep = sleepsm(pet.sleep, rando2);
 		pet.smell = bathesm(pet.smell, rando3);

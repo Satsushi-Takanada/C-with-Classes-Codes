@@ -1,4 +1,3 @@
-#include "TextFighterImproved.h"
 #include <iostream>
 #include <string>
 #include <cmath>

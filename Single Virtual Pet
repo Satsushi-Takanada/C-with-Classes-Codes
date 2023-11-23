@@ -1,4 +1,5 @@
 #include <iostream>
+#include <algorithm>
 #include <string>
 #include <windows.h>
 
@@ -40,7 +41,8 @@ int bathesp(int bathes, int rando) {
 	return bathes;
 }
 
-int playssp(int plays, int rando) {;
+int playssp(int plays, int rando) {
+	;
 	plays = plays + rando;
 
 	if (plays >= 50) {
@@ -107,7 +109,9 @@ int main() {
 	cout << "\nStart?(Y/N)\n";
 	getline(cin, pet.action);
 
-	if (pet.action == "Y" || pet.action == "y") {
+	transform(pet.action.begin(), pet.action.end(), pet.action.begin(), toupper);
+
+	if (pet.action == "Y") {
 		goto VirtualPet;
 	}
 	else {
@@ -116,6 +120,8 @@ int main() {
 
 VirtualPet: cout << "\nEnter name for pet:\n";
 	getline(cin, pet.name);
+
+	transform(pet.name.begin(), pet.name.end(), pet.name.begin(), toupper);
 
 GAME: system("CLS");
 
@@ -137,8 +143,10 @@ GAME: system("CLS");
 	cout << "\n\nHunger: " << pet.food << "\nEnergy: " << pet.sleep;
 	cout << "\nSmell: " << pet.smell << "\nHappiness: " << pet.happy;
 
-	QUESTION: cout << "\n\nAction?\n";
+QUESTION: cout << "\n\nAction?\n";
 	cin >> pet.action;
+
+	transform(pet.action.begin(), pet.action.end(), pet.action.begin(), toupper);
 
 	if (pet.action == "FEED") {
 		feedsp(pet.food, rando1);

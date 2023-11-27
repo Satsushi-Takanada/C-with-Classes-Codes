@@ -11,67 +11,74 @@ struct user {
 	string name, action;
 };
 
-int feedsp(int fed, int rando) {
-	fed = fed + rando;
+int feeds(int fed, int rando, string action) {
 
-	if (fed >= 50) {
-		fed = 50;
+	if (action == "FEED") {
+
+		fed = fed + rando;
+
+		if (fed >= 50) {
+			fed = 50;
+		}
 	}
 
+	else {
+		fed = fed - rando;
+	}
+	
 	return fed;
 }
 
-int sleepsp(int sleeps, int rando) {
-	sleeps = sleeps + rando;
+int sleeps(int sleeps, int rando, string action) {
 
-	if (sleeps >= 50) {
-		sleeps = 50;
+	if (action == "SLEEP") {
+
+		sleeps = sleeps + rando;
+
+		if (sleeps >= 50) {
+			sleeps = 50;
+		}
 	}
 
+	else {
+		sleeps = sleeps - rando;
+	}
+	
 	return sleeps;
 }
 
-int bathesp(int bathes, int rando) {
-	bathes = bathes + rando;
+int bathes(int bathes, int rando, string action) {
 
-	if (bathes >= 50) {
-		bathes = 50;
+	if (action == "BATHE") {
+
+		bathes = bathes + rando;
+
+		if (bathes >= 50) {
+			bathes = 50;
+		}
+	}
+
+	else {
+		bathes = bathes - rando;
 	}
 
 	return bathes;
 }
 
-int playssp(int plays, int rando) {
-	;
-	plays = plays + rando;
+int plays(int plays, int rando, string action) {
 
-	if (plays >= 50) {
-		plays = 50;
+	if (action == "PLAY") {
+
+		plays = plays + rando;
+
+		if (plays >= 50) {
+			plays = 50;
+		}
 	}
 
-	return plays;
-}
-
-int feedsm(int fed, int rando) {
-	fed = fed - rando;
-
-	return fed;
-}
-
-int sleepsm(int sleeps, int rando) {
-	sleeps = sleeps - rando;
-
-	return sleeps;
-}
-
-int bathesm(int bathes, int rando) {
-	bathes = bathes - rando;
-
-	return bathes;
-}
-
-int playssm(int plays, int rando) {
-	plays = plays - rando;
+	else {
+		plays = plays - rando;
+	}
 
 	return plays;
 }
@@ -148,34 +155,34 @@ QUESTION: cout << "\n\nAction?\n";
 	transform(pet.action.begin(), pet.action.end(), pet.action.begin(), toupper);
 
 	if (pet.action == "FEED") {
-		pet.food = feedsp(pet.food, rando1);
-		pet.sleep = sleepsm(pet.sleep, rando2);
-		pet.smell = bathesm(pet.smell, rando3);
-		pet.happy = playssm(pet.happy, rando4);
+		pet.food = feeds(pet.food, rando1, pet.action);
+		pet.sleep = sleeps(pet.sleep, rando2, pet.action);
+		pet.smell = bathes(pet.smell, rando3, pet.action);
+		pet.happy = plays(pet.happy, rando4, pet.action);
 		goto GAME;
 	}
 
 	else if (pet.action == "SLEEP") {
-		pet.food = feedsm(pet.food, rando1);
-		pet.sleep = sleepsp(pet.sleep, rando2);
-		pet.smell = bathesm(pet.smell, rando3);
-		pet.happy = playssm(pet.happy, rando4);
+		pet.food = feeds(pet.food, rando1, pet.action);
+		pet.sleep = sleeps(pet.sleep, rando2, pet.action);
+		pet.smell = bathes(pet.smell, rando3, pet.action);
+		pet.happy = plays(pet.happy, rando4, pet.action);
 		goto GAME;
 	}
 
 	else if (pet.action == "BATHE") {
-		pet.food = feedsm(pet.food, rando1);
-		pet.sleep = sleepsm(pet.sleep, rando2);
-		pet.smell = bathesp(pet.smell, rando3);
-		pet.happy = playssm(pet.happy, rando4);
+		pet.food = feeds(pet.food, rando1, pet.action);
+		pet.sleep = sleeps(pet.sleep, rando2, pet.action);
+		pet.smell = bathes(pet.smell, rando3, pet.action);
+		pet.happy = plays(pet.happy, rando4, pet.action);
 		goto GAME;
 	}
 
 	else if (pet.action == "PLAY") {
-		pet.food = feedsm(pet.food, rando1);
-		pet.sleep = sleepsm(pet.sleep, rando2);
-		pet.smell = bathesm(pet.smell, rando3);
-		pet.happy = playssp(pet.happy, rando4);
+		pet.food = feeds(pet.food, rando1, pet.action);
+		pet.sleep = sleeps(pet.sleep, rando2, pet.action);
+		pet.smell = bathes(pet.smell, rando3, pet.action);
+		pet.happy = plays(pet.happy, rando4, pet.action);
 		goto GAME;
 	}
 	else if (pet.action == "EXIT") {

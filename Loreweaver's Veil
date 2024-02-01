@@ -1,0 +1,78 @@
+#include <iostream>
+#include <windows.h>
+#include <algorithm>
+#include <string>
+#include <cmath>
+
+struct main_character {
+	double physical_damage, magical_damage, health;
+	std::string name, role, action;
+};
+
+struct enemy_character {
+	double physical_damage, magical_damage, health;
+	std::string name;
+};
+
+struct character_level {
+	double physical_damage, magical_damage, health;
+};
+
+void IStory() {
+	main_character player;
+	std::string Istory = "In the realm of Astraloria, a land steeped in ancient magic and guarded by the celestial dance of constellations, a shadow\nfalls across the night sky. The once radiant stars have dimmed, and the constellations have vanished, leaving Astraloria in\na state of cosmic disarray. Whispers among the wisest sages speak of an impending doom that threatens to engulf the entire realm.\n\nLegends tell of the Loreweaver, a legendary figure with the ability to manipulate the very fabric of the cosmos.It is said\nthat the Loreweaver's Veil, an artifact of immense power, can unveil the hidden pathways to the Lost Constellations and\nrestore balance to Astraloria. As a chosen adventurer, you find yourself drawn into this cosmic saga.\n\nYour journey begins in the ancient city of Starhaven, where the elders speak of prophecies that foretell your destiny.\nArmed with a basic understanding of celestial magic and a quest bestowed upon you by the ethereal Oracle, you set forth\ninto the mystical landscapes of Astraloria.";
+	char slow;
+	for (int i = 0; i < Istory.length(); i++) {
+		slow = Istory[i];
+		std::cout << slow;
+
+		Sleep(10);
+	}
+	getline(std::cin, player.action);
+}
+
+
+int main() {
+	main_character player;
+
+	for (int i = 1; i <= 70; i++) {
+		std::cout << "#";
+		if (i == 70) {
+			std::cout << "\n";
+			for (int j = 0; j <= 8; j++) {
+				std::cout << " ";
+			}
+			std::cout << "Loreweaver's Veil: Quest for the Lost Constellations";
+			for (int j = 0; j <= 9; j++) {
+				std::cout << " ";
+				if (j == 9) {
+					std::cout << "\n";
+					for (int i = 1; i <= 70; i++) {
+						std::cout << "#";
+					}
+					std::cout << "\n\n";
+					for (int i = 0; i <= 28; i++) {
+						std::cout << " ";
+						if (i == 28) {
+							std::cout << "Press Enter\n";
+							getline(std::cin, player.action);
+						}
+					}
+				}
+			}
+		}
+	}
+
+	system("CLS");
+
+	/*Intro Story*/
+	IStory();
+	system("CLS");
+
+	/*Character Customization*/
+	std::cout << "What is your name Adventurer?\n";
+	getline(std::cin, player.name);
+
+	transform(player.name.begin(), player.name.end(), player.name.begin(), toupper); 
+}
+

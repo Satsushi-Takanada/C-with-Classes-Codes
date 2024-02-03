@@ -40,10 +40,7 @@ void Narrator(int count) {
 				std::cout << slow;
 				Sleep(10);
 		}
-	}
-	
-
-		
+	}		
 }
 
 void Story() {

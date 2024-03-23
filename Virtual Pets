@@ -1,0 +1,378 @@
+#include "VirtualPets.h"
+#include <iostream>
+#include <string>
+#include <algorithm>
+#include <windows.h>
+
+using namespace std;
+
+struct pet {
+	string pick;
+	int health;
+	int food;
+	int smell;
+	int feed;
+	int bathe;
+	int play;
+	int score;
+};
+
+
+int Poo() {
+	srand(time(NULL));
+	pet choose;
+	pet poo;
+
+	poo.health = 70;
+	poo.food = 70;
+	poo.smell = 70;
+
+	poo.score = 0;
+
+	cout << "*Type EXIT to leave the game*\n";
+	cout << "*Type RETURN to go to main menu*\n\n";
+
+	cout << "Hi! My name is Poo.\n\n";
+
+PET: cout << "POO: \n\n";
+
+	poo.play = 1 + rand() % 30;
+	poo.feed = 1 + rand() % 30;
+	poo.bathe = 1 + rand() % 30;
+
+	if (poo.health <= 0 || poo.food <= 0 || poo.smell <= 0) {
+		system("CLS");
+		cout << "GAMOVER";
+		cout << "\n\nYour Score: " << poo.score;
+		exit(0);
+	}
+
+	cout << "Health: " << poo.health << "\n";
+	cout << "Hunger: " << poo.food << "\n";
+	cout << "Shower: " << poo.smell << "\n\n";
+
+	cout << "Play\n";
+	cout << "Feed\n";
+	cout << "Bathe\n\n";
+
+Wrong: cout << "What do you want to do?\n";
+	cin >> choose.pick;
+
+	transform(choose.pick.begin(), choose.pick.end(), choose.pick.begin(), toupper);
+
+	if (choose.pick == "PLAY") {
+		poo.score += 100;
+		poo.health += poo.play;
+		poo.food -= poo.feed;
+		poo.smell -= poo.bathe;
+		system("CLS");
+		Sleep(500);
+		cout << "You pet poo and played with him!\n";
+		Sleep(1000);
+		system("CLS");
+		goto PET;
+		cout << "*Type EXIT to leave the game*\n";
+		cout << "*Type RETURN to go to main menu*\n\n";
+	}
+
+	else if (choose.pick == "FEED") {
+		poo.score += 100;
+		poo.health -= poo.play;
+		poo.food += poo.feed;
+		poo.smell -= poo.bathe;
+		system("CLS");
+		Sleep(500);
+		cout << "You fed poo!\n";
+		Sleep(1000);
+		system("CLS");
+		goto PET;
+		cout << "*Type EXIT to leave the game*\n";
+		cout << "*Type RETURN to go to main menu*\n\n";
+	}
+
+	else if (choose.pick == "BATHE") {
+		poo.score += 100;
+		poo.health -= poo.play;
+		poo.food -= poo.feed;
+		poo.smell += poo.bathe;
+		system("CLS");
+		Sleep(500);
+		cout << "You bathe poo!\n";
+		Sleep(1000);
+		system("CLS");
+		goto PET;
+		cout << "*Type EXIT to leave the game*\n";
+		cout << "*Type RETURN to go to main menu*\n\n";
+	}
+
+	else if (choose.pick == "EXIT") {
+		system("CLS");
+		cout << "Goodbye Owner!";
+		exit(0);
+	}
+
+	else if (choose.pick == "RETURN") {
+		cout << "Loading...";
+		Sleep(1000);
+		system("CLS");
+	}
+
+	else {
+		goto Wrong;
+	}
+}
+
+void Marley() {
+	srand(time(NULL));
+	pet choose;
+	pet marley;
+
+	marley.health = 70;
+	marley.food = 70;
+	marley.smell = 70;
+
+	marley.score = 0;
+
+	cout << "*Type EXIT to leave the game*\n";
+	cout << "*Type RETURN to go to main menu*\n\n";
+
+	cout << "Hi! My name is Marley.\n\n";
+
+PET: cout << "MARLEY: \n\n";
+
+	marley.play = 1 + rand() % 30;
+	marley.feed = 1 + rand() % 30;
+	marley.bathe = 1 + rand() % 30;
+
+	if (marley.health <= 0 || marley.food <= 0 || marley.smell <= 0) {
+		system("CLS");
+		cout << "GAMOVER";
+		cout << "\n\nYour Score: " << marley.score;
+		exit(0);
+	}
+
+	cout << "Health: " << marley.health << "\n";
+	cout << "Hunger: " << marley.food << "\n";
+	cout << "Shower: " << marley.smell << "\n\n";
+
+	cout << "Play\n";
+	cout << "Feed\n";
+	cout << "Bathe\n\n";
+
+Wrong: cout << "What do you want to do?\n";
+	cin >> choose.pick;
+
+	transform(choose.pick.begin(), choose.pick.end(), choose.pick.begin(), toupper);
+
+	if (choose.pick == "PLAY") {
+		marley.score += 100;
+		marley.health += marley.play;
+		marley.food -= marley.feed;
+		marley.smell -= marley.bathe;
+		system("CLS");
+		Sleep(500);
+		cout << "You pet marley and played with him!\n";
+		Sleep(1000);
+		system("CLS");
+		goto PET;
+		cout << "*Type EXIT to leave the game*\n";
+		cout << "*Type RETURN to go to main menu*\n\n";
+	}
+
+	else if (choose.pick == "FEED") {
+		marley.score += 100;
+		marley.health -= marley.play;
+		marley.food += marley.feed;
+		marley.smell -= marley.bathe;
+		system("CLS");
+		Sleep(500);
+		cout << "You fed marley!\n";
+		Sleep(1000);
+		system("CLS");
+		goto PET;
+		cout << "*Type EXIT to leave the game*\n";
+		cout << "*Type RETURN to go to main menu*\n\n";
+	}
+
+	else if (choose.pick == "BATHE") {
+		marley.score += 100;
+		marley.health -= marley.play;
+		marley.food -= marley.feed;
+		marley.smell += marley.bathe;
+		system("CLS");
+		Sleep(500);
+		cout << "You bathe marley!\n";
+		Sleep(1000);
+		system("CLS");
+		goto PET;
+		cout << "*Type EXIT to leave the game*\n";
+		cout << "*Type RETURN to go to main menu*\n\n";
+	}
+
+	else if (choose.pick == "RETURN") {
+		cout << "Loading...";
+		Sleep(1000);
+		system("CLS");
+	}
+
+	else if (choose.pick == "EXIT") {
+		system("CLS");
+		cout << "Goodbye Owner!";
+		exit(0);
+	}
+
+	else {
+		goto Wrong;
+	}
+}
+
+void Tzu() {
+	srand(time(NULL));
+	pet choose;
+	pet tzu;
+
+	tzu.health = 70;
+	tzu.food = 70;
+	tzu.smell = 70;
+
+	tzu.score = 0;
+
+	cout << "*Type EXIT to leave the game*\n";
+	cout << "*Type RETURN to go to main menu*\n\n";
+
+	cout << "Hi! My name is Tzu.\n\n";
+
+PET: cout << "TZU: \n\n";
+
+	tzu.play = 1 + rand() % 30;
+	tzu.feed = 1 + rand() % 30;
+	tzu.bathe = 1 + rand() % 30;
+
+	if (tzu.health <= 0 || tzu.food <= 0 || tzu.smell <= 0) {
+		system("CLS");
+		cout << "GAMOVER";
+		cout << "\n\nYour Score: " << tzu.score;
+		exit(0);
+	}
+
+	cout << "Health: " << tzu.health << "\n";
+	cout << "Hunger: " << tzu.food << "\n";
+	cout << "Shower: " << tzu.smell << "\n\n";
+
+	cout << "Play\n";
+	cout << "Feed\n";
+	cout << "Bathe\n\n";
+
+Wrong: cout << "What do you want to do?\n";
+	cin >> choose.pick;
+
+	transform(choose.pick.begin(), choose.pick.end(), choose.pick.begin(), toupper);
+
+	if (choose.pick == "PLAY") {
+		tzu.score += 100;
+		tzu.health += tzu.play;
+		tzu.food -= tzu.feed;
+		tzu.smell -= tzu.bathe;
+		system("CLS");
+		Sleep(500);
+		cout << "You pet tzu and played with him!\n";
+		Sleep(1000);
+		system("CLS");
+		goto PET;
+		cout << "*Type EXIT to leave the game*\n";
+		cout << "*Type RETURN to go to main menu*\n\n";
+	}
+
+	else if (choose.pick == "FEED") {
+		tzu.score += 100;
+		tzu.health -= tzu.play;
+		tzu.food += tzu.feed;
+		tzu.smell -= tzu.bathe;
+		system("CLS");
+		Sleep(500);
+		cout << "You fed tzu!\n";
+		Sleep(1000);
+		system("CLS");
+		goto PET;
+		cout << "*Type EXIT to leave the game*\n";
+		cout << "*Type RETURN to go to main menu*\n\n";
+	}
+
+	else if (choose.pick == "BATHE") {
+		tzu.score += 100;
+		tzu.health -= tzu.play;
+		tzu.food -= tzu.feed;
+		tzu.smell += tzu.bathe;
+		system("CLS");
+		Sleep(500);
+		cout << "You bathe tzu!\n";
+		Sleep(1000);
+		system("CLS");
+		goto PET;
+		cout << "*Type EXIT to leave the game*\n";
+		cout << "*Type RETURN to go to main menu*\n\n";
+	}
+
+	else if (choose.pick == "RETURN") {
+		cout << "Loading...";
+		Sleep(1000);
+		system("CLS");
+	}
+
+	else if (choose.pick == "EXIT") {
+		system("CLS");
+		cout << "Goodbye Owner!";
+		exit(0);
+	}
+
+	else {
+		goto Wrong;
+	}
+}
+
+int main() {
+	pet choose;
+
+	choose.pick;
+
+MAINMENU:
+	cout << "*Type EXIT to leave the game*\n\n";
+
+	cout << "Welcome to Virtual Pet Play!\n\n";
+	cout << "Pick a Pet!: \n\n";
+	cout << "Poo\n";
+	cout << "Marley\n";
+	cout << "Tzu\n\n";
+
+Wrong: cout << "Choose a Pet!\n";
+
+	cin >> choose.pick;
+
+	transform(choose.pick.begin(), choose.pick.end(), choose.pick.begin(), toupper);
+
+	if (choose.pick == "POO") {
+		system("CLS");
+		Poo();
+	}
+
+	else if (choose.pick == "MARLEY") {
+		system("CLS");
+		Marley();
+	}
+
+	else if (choose.pick == "TZU") {
+		system("CLS");
+		Tzu();
+	}
+	else if (choose.pick == "EXIT") {
+		system("CLS");
+		cout << "Goodbye Player!";
+		exit(0);
+	}
+
+	else {
+		goto Wrong;
+	}
+
+	goto MAINMENU;
+}

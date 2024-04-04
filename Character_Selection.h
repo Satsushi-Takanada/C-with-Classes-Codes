@@ -9,6 +9,7 @@ public:
 		std::cout << "\nWhats is your name Adventurer? \n";
 		std::getline(std::cin >> std::ws, CharacterName);
 
+		
 		return CharacterName;
 	}
 

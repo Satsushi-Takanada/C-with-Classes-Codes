@@ -1,0 +1,12 @@
+        int size = word1.size() + word2.size();  //Will find the size of the two strings
+        std::string answer; //Willhold the string
+
+         for (int i = 0; i < word1.size() + word2.size(); i++) { ??loop until the string is until the size of the two strings
+            if (i < word1.length()) { //Will output char of word1
+            answer += word1[i];
+            }
+            if (i < word2.length()){ //Will output char of word 2
+            answer += word2[i];
+        }            //It will check the first if put word 1 cha in string then will check the second if and its the same as the first
+                    //This in turn will make them alternately in the string and even though 1 is longer than the other it will only stop if both conditions are satisfied when it has stored all the possible char of the size
+        std::cout << answer; //Output the alternately char / string of word1 and word2

@@ -1,0 +1,10 @@
+        for (int i = 0; i < str1.length() + str2.length(); i++) { //Loop until it reaches the size of the two strings
+            if (str1 + str2 == str2 + str1) { //If the two strings if added has the same length size
+                return str1.substr(0, std::gcd(str1.length(), str2.length())); // This will find the gcd size of the 2 string
+            }                                                      //and then it will take the first letters of string1 whatever the gcd is
+            else {
+                return ""; //If not equal then null
+            }
+        }
+
+        

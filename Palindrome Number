@@ -1,0 +1,16 @@
+        double check = x; //Will store the number so it wont turn to 0 when doing the solution
+        double num = 0; //Will hold the reversed number
+        double rem = 0; //Will hold ever remainder number (basicallty the last digit of the number like 675 it woll hold 5 then 7 then 6)
+
+        while(x > 0) { //Loop will not stop unless its a zero
+            rem = x % 10; //Will modulus the number (get the remainder)
+            num = num * 10 + rem; //Will multiply the number to 10 and add the remainder (0 x 10 + 5  = 5) (5 x 10 + 3 = 53)
+            x /= 10; //Wiull divide the number to 10 ever modulus so that it will shorten and shorten until 0
+        }
+
+        if (check >= 0 && num == check) { //Will check if the number is the same when reversed and also positive number
+            return true;                 //Positive number because when you reverse the number as negative the negative should be at the back
+        }                               //So it will never be equal therefore the reversed number should be greather than or eqiual to 0
+        else {
+            return false;              
+        }                           //PS you could do this as string but the follow up was not converting the number to string

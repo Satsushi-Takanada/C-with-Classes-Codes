@@ -1,0 +1,25 @@
+        vector<bool> most_candies; //This will check if the kid has the most candies when added with the extra
+        int temp = 0; //This will hold the kids candies added with the extra candies
+        int count = 0; //This will count if the kid who has greater than candies than the other kid 
+        
+        for (auto j = candies.begin(); j != candies.end(); j++) {
+            temp = *j + extraCandies; //The first loop will print out the kids with candies
+            for (int i = 0; i < candies.size(); i++) {
+                if (temp >= candies[i]) { 
+                   count++;              
+                }
+                continue;               //The second loop is it will check if the kid has more candies than the other kids
+                                       //It will count if the kid more candies than the other kids is equal to the size of the array
+            }                           
+            if (count == candies.size()) { //If the count his qual to the number of index in the array it will pushback true in bool
+                most_candies.push_back(true);
+                count = 0;
+            }
+            else {
+                most_candies.push_back(false); //Will pushback false if not
+                count = 0;
+            }
+        }
+
+        return most_candies; //Will output the true and false values
+    }

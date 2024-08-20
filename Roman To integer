@@ -1,0 +1,37 @@
+        map<char, int> Roman_Numerals; //Initializing the map of roman numerals
+        Roman_Numerals['I'] = 1;
+        Roman_Numerals['V'] = 5;
+        Roman_Numerals['X'] = 10;
+        Roman_Numerals['L'] = 50;
+        Roman_Numerals['C'] = 100;
+        Roman_Numerals['D'] = 500;
+        Roman_Numerals['M'] = 1000; //Key and Value of roman numerals
+        char temp1; //Will hold the converted string to a letter of the roman numeral
+        char temp2; //Will hold the converted string to a letter of the roman numeral
+        int Value1 = 0; //Will hold the value of the key
+        int Value2 = 0; //Will hold the value of the key
+        int Answer = 0; //Will hold the added values
+
+        map<char, int>::iterator Roman_Numeral_Value1; //This is a an object pointer to access the map 
+        map<char, int>::iterator Roman_Numeral_Value2; //This is a an object pointer to access the map
+
+        for (int i = 0; i < s.size(); i++) { //This loop will get the char version of the string of roman numerals
+            temp1 = s[i]; //This will hold the char at i
+            temp2 = s[i + 1]; //This will hold char at i + 1
+
+            Roman_Numeral_Value1 = Roman_Numerals.find(temp1); //Will find the char key and get the value
+            Roman_Numeral_Value2 = Roman_Numerals.find(temp2); //Will find the char key and get the value
+
+            Value1 = Roman_Numeral_Value1->second; //Will hold the value of the key found in temp1
+            Value2 = Roman_Numeral_Value2->second; //Will hold the value of the key found in temp2
+
+            if (Value1 >= Value2) { //If the roman number 1 is larger than the second then it will be stored and added to the answer
+                Answer = Answer + Value1;
+            }
+            else if (Value1 < Value2) { //If the roman number 2 is larger then it will add to the answer and be subtracted and it will skip a roman value because some roman values are subtracted to make some less numbers like 90 or 4
+                Answer = (Answer + Value2) - Value1;
+                i++;
+            }
+        }
+
+        return Answer; //It will output the numeric value  

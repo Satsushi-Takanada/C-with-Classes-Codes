@@ -1,0 +1,14 @@
+      vector<int> answer; //Will hold the array position
+        
+        for (int i = 0; i < nums.size(); i++) {
+            for (int j = 0; j < nums.size(); j++) { //This two loops will loop until teh size of the array
+                if (i != j && nums[i] + nums[j] == target) { //Will check if the numbers are not in the same position and if it adds to the target number
+                    answer.push_back(i);//Will put the position in the array
+                    answer.push_back(j);
+                    goto Answer; //Will direct to the return
+                }
+            }
+        }
+
+        Answer:
+        return answer; //Print out answer

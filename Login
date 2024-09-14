@@ -1,0 +1,50 @@
+#include "Header_Initiate.h"
+
+std::string userLogin() {
+	std::map<std::string, std::string> user; // Decleration of map for username and password
+	user["Asahi"] = "CederyMahalKo";
+	user["Kaizer"] = "IHaveACrushNaa"; // Username and Password e.g. user["Asahi] Asahi = key "CederyMahalKo" = value of key Asahi
+	user["Khate"] = "MahalKoBebekoSISean";
+
+	std::map<std::string, std::string>::iterator userLogin; // An iterator to get the username (key) password (value)
+
+	std::string loginUsername, loginUserpassword; // Identifier for userinput of username and password
+	int loginAttempts = 0; // Identifier for login attempts
+
+	do { // A do-while loop that will only stop if login attempts reached 5
+		std::cout << "Hello Harmoniquser!\n\n Username: ";
+		std::getline(std::cin, loginUsername); // This user will input their username and password
+		std::cout << " Password: ";
+		std::getline(std::cin, loginUserpassword);
+
+		userLogin = user.find(loginUsername); // This will find the inputed username of the user in the key e.g. Asahi
+
+		if (userLogin != user.end()) { // This will check if the inputed username is in the map 
+			if (userLogin->second == loginUserpassword) { // If it has a username (key) this will check is the inputes password (vaue) is the same in the key
+				std::cout << " Welcome " + loginUsername + "!"; // This would welcome the user
+				Sleep(1000); // Pauser for a few sec
+				break;
+			}
+			else { // It not then it will increment teh attempt and wrong password
+				std::cout << " Wrong Password!";
+				loginAttempts++;
+			}
+		}
+		else { // If it does not then it will increment the attempt and no such user
+			std::cout << " No such user!";
+			loginAttempts++;
+		}
+
+		Sleep(1000); 
+		system("CLS"); // Pauser for a few sec before clearing the console
+	} while (loginAttempts != 5);
+
+	if (loginAttempts == 5) { // If the attempts reached 5 then it wil clear the console and say locked and exit the program
+		system("CLS");
+		std::cout << "Locked!!\nTry again in 1 hour!";
+		exit(0);
+	}
+
+	system("CLS"); 
+	return loginUsername; // Clearing the console before returning the username
+}

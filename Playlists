@@ -1,0 +1,15 @@
+#include "Header_Initiate.h";
+
+class Playlists {
+private:
+	vvString musicTaste; // A 2d array to hold the users playlist
+public:
+
+	std::string musicPlaylists() {
+
+		//If the user wants to create a playlist you should just insert new names in the array making it [0][0] and [1][0] etc.
+		return "music";
+	}
+	
+};
+

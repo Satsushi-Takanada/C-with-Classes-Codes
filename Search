@@ -1,0 +1,19 @@
+#include "Header_Initiate.h"
+#include "Music_Albums.h"
+
+class Search {
+private:
+	std::string name;
+public:
+	musicArtists Music;
+
+	void searchMusic() {
+		system("CLS");
+
+		std::cout << "Search: ";
+		std::getline(std::cin, name); // Will get the song/artist
+		transform(name.begin(), name.end(), name.begin(), toupper);
+
+		Music.FindMusic(name);
+	}
+};

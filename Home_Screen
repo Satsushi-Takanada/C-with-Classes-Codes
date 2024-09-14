@@ -1,0 +1,30 @@
+#include "Header_Initiate.h"
+#include "Login.h"
+#include "Playlists.h"
+#include "Search.h"
+
+void homeScreen() {
+	Playlists userPlaylist;
+	Search wantMusic;
+
+	std::string USER = userLogin(); // Identifier for name of user in the Login
+	std::string choice; // Identifier for user choice
+
+	std::cout << "Harmoniquser: " + USER;  // Will print out the username
+
+	std::cout << "\n\n Search\n Play\n Exit\n\n Selected: ";
+	std::getline(std::cin, choice); // Will get the choice of the user
+	transform(choice.begin(), choice.end(), choice.begin(), tolower); // Will make the choice of the user to not caps
+
+	if (choice == "play") { // WIll direct to the users playlists
+		userPlaylist.musicPlaylists();
+	}
+	if (choice == "search") { // WIll direct to search the song that is in the  music albums
+		wantMusic.searchMusic();
+	}
+	if (choice == "exit") { // Will exit if the user chose exit in choice
+		system("CLS");
+		std::cout << "Goodbye Harmoniquser!"; 
+		exit(0);
+	}
+}

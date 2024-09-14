@@ -1,0 +1,12 @@
+#include <iostream> 
+#include <cstdlib>
+#include <algorithm>
+#include <vector>
+#include <string>
+#include <cmath>
+#include <iomanip>
+#include <map>
+#include <windows.h>
+
+typedef std::vector<std::string> vString; // This wills hortcute the vector string
+typedef std::vector<std::vector<std::string>> vvString; // This will shortcute array inside an array (2d Array) vector ver
